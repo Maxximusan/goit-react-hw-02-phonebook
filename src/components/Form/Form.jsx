@@ -1,5 +1,7 @@
 import React from 'react'
+import { nanoid } from 'nanoid';
 import css from 'components/Form/Form.module.css'
+
 
 export class Form extends React.Component {
 
@@ -29,12 +31,16 @@ this.props.submit(this.state)
     });
     };
     
+    nameInputId = nanoid();
+    telInputId = nanoid()
+    
     render() {
         return (
             <form onSubmit={this.formSubmit} className={css.form}>
-          <label htmlFor='' className={css.form__field}>
+          <label htmlFor={this.nameInputId} className={css.form__field}>
             Name:
-            <input
+             <input
+              id={this.nameInputId}     
               className={css.form__input}
               value={this.state.name}
               onChange={this.inputChange}
@@ -43,12 +49,14 @@ this.props.submit(this.state)
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
+              
             />
           </label>
-          <label htmlFor='' className={css.form__field}>
+          <label htmlFor={this.telInputId} className={css.form__field}>
             Number:
             <input
-               className={css.form__input} 
+              id={this.telInputId}  
+              className={css.form__input} 
               value={this.state.number}
               onChange={this.inputChange}
               name="number"
